@@ -6,7 +6,7 @@ $(function(){
     back.outerHeight(winH)
     
     
-    /*//오프닝
+    //오프닝
     var $open = $('.open')
     var openbox = $('.open-box')
     var obw = openbox.width()
@@ -30,7 +30,7 @@ $(function(){
                 });
             });
         })
-    });*/  
+    });
     
     
     //애들 마우스오버
