@@ -33,6 +33,7 @@ $(function(){
     
     
     //애들 마우스오버
+    var backup = $('.back>.back-up');
     var morak = $('.lamorak');
     var oscar = $('.oscar');
     var laimg = $('.l-img-box');
@@ -43,7 +44,7 @@ $(function(){
         laimgimg.on({        
             mouseenter: function(){
                 $(this).stop().animate({width:'81%', height:'81%'},500);
-                morak.css({'z-index':'99999'});
+                morak.css({'z-index':'9999'});
                 oscar.stop().animate({opacity:'0.6'},300);
                 osimgimg.stop().animate({width:'79%', height:'79%'},300);
             },
@@ -59,7 +60,7 @@ $(function(){
         osimgimg.on({
             mouseenter: function(){
                 $(this).stop().animate({width:'81%', height:'81%'},500);
-                oscar.css({'z-index':'99999'});
+                oscar.css({'z-index':'9999'});
                 morak.stop().animate({opacity:'0.6'},300);
                 laimgimg.stop().animate({width:'79%', height:'79%'},300);
             },
@@ -71,8 +72,6 @@ $(function(){
             }
         });
     };
-    lamouse();
-    osmouse();
     
     //profile 클릭시
     var latxt = $('.l-text-box')
@@ -84,6 +83,7 @@ $(function(){
     var ospclose = osprofile.children('.close');
     function laclick(){
         laimgimg.click(function(){
+            backup.css({display:'block'});
             $('.gnav').animate({opacity:0, visibility:'hidden', top:'-105%'},700);
             oscar.stop().animate({opacity:0, visibility:'hidden', right:'90px'},300,function(){
                 $(this).css({display:'none'});
@@ -113,6 +113,7 @@ $(function(){
                     lamouse();
                     osmouse();
                     laimgimg.css({cursor:'pointer'});
+                    backup.css({display:'none'});
                 });
             });
             $('.gnav').animate({opacity:1, visibility:'visible', top:'0%'},700);
@@ -120,6 +121,7 @@ $(function(){
     };
     function osclick(){
         osimgimg.click(function(){
+            backup.css({display:'block'});
             $('.gnav').animate({opacity:0, visibility:'hidden', top:'-105%'},700);
             morak.stop().animate({opacity:0,visibility:'hidden', left:'70px'},300,function(){
                 $(this).css({display:'none'});
@@ -149,6 +151,7 @@ $(function(){
                     osmouse();
                     lamouse();
                     osimgimg.css({cursor:'pointer'});
+                    backup.css({display:'none'});
                 });
                 $('.gnav').animate({opacity:1, visibility:'visible', top:'0%'},700);
             });
@@ -171,7 +174,8 @@ $(function(){
         latxt.animate({opacity:0},300);
         date.animate({opacity:0},300);
         osimgimg.animate({opacity:0.2},700);
-        laimgimg.animate({opacity:0.2},700);        
+        laimgimg.animate({opacity:0.2},700);
+        backup.css({display:'block'});
     }
     menuicon.click(function(){
         var slideIndex = $(this).index();
@@ -191,6 +195,7 @@ $(function(){
         osimgimg.stop().animate({opacity:1},900);
         laimgimg.stop().animate({opacity:1},900,function(){
             slides.css({left:0});
+            backup.css({display:'none'});
         });
     });
     
