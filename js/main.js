@@ -21,14 +21,13 @@ $(function(){
             $(this).css({display:'none'});
             $open.stop().animate({opacity:0},1000);
             $('.wrap').delay(500).animate({opacity:1},2500,function(){
-                $('.date').animate({opacity:1},700);
-                $('.l-text-box').animate({opacity:1,left:'-80px'},700);
-                $('.o-text-box').animate({opacity:1,right:'-100px'},700,function(){
-                    $open.css({display:'none'})
-                    lamouse();
-                    osmouse();
-                });
+                $open.css({display:'none'})
+                lamouse();
+                osmouse();
             });
+            $('.date').delay(1000).animate({opacity:1},700);
+            $('.l-text-box').delay(1000).animate({opacity:1,left:'-80px'},700);
+            $('.o-text-box').delay(1000).animate({opacity:1,right:'-100px'},700);
         })
     });
     
@@ -246,12 +245,12 @@ $(function(){
                 $cday.eq(a).children('.cdtxt').text(n[a]+'일')
                 kgap = (now.getTime() - celdate.getTime());
                 var kdategap = kgap/(1000*60*60*24);
-                if(kdategap <= 0 && kdategap > -1) {
+                if(kdategap <= 1 && kdategap > 0) {
                     $cday.eq(a).children('.cddate').text('Today');
                     $cday.eq(a).children('.cddate').css({'color':'#121220','font-weight':'700'});
                     $cday.eq(a).children('.cdtxt').css({'color':'#121220'});
                     $cday.eq(a).css({'background-color':'#ffffff'});
-                }else if(kdategap <= -1) {
+                }else if(kdategap <= 0) {
                     $cday.eq(a).css({'border':'1px solid #a8a8ba'});
                     $cday.eq(a).children('.cddate').css({'color':'#a8a8ba'});
                     $cday.eq(a).children('.cdtxt').css({'color':'#a8a8ba'});
@@ -264,12 +263,12 @@ $(function(){
                 $cday.eq(a).children('.cdtxt').text(b+'주년');
                 kgap = (now.getTime() - anndate.getTime());
                 var kdategap = kgap/(1000*60*60*24);
-                if(kdategap <= 0 && kdategap > -1) {
+                if(kdategap <= 1 && kdategap > 0) {
                     $cday.eq(a).children('.cddate').text('Today');
                     $cday.eq(a).children('.cddate').css({'color':'#121220','font-weight':'700'});
                     $cday.eq(a).children('.cdtxt').css({'color':'#121220'});
                     $cday.eq(a).css({'background-color':'#ffffff'});
-                }else if(kdategap <= -1) {
+                }else if(kdategap <= 0) {
                     $cday.eq(a).css({'border':'1px solid #a8a8ba'});
                     $cday.eq(a).children('.cddate').css({'color':'#a8a8ba'});
                     $cday.eq(a).children('.cdtxt').css({'color':'#a8a8ba'});
@@ -360,14 +359,21 @@ $(function(){
     });
     
     gal.children('li').each(function(){
-        //if($(this).children('span').hasClass('img') == true) {
+        if($(this).children('span').hasClass('img')) {
             $(this).click(function(){
                 var modalhtml = $(this).html();
                 var modalClose = '<span onclick="modalClose()" class="mCloseBtn"><img src="img/modal_close.png" alt="모달창 닫기버튼"></span>';
                 $('.modal').html(modalhtml+modalClose);
                 $('.modal').css({display:'flex'});
             });
-        //};
+        }else if($(this).children('span').hasClass('text')){
+            $(this).click(function(){
+                var modalhtml = $(this).html();
+                var modalClose = '<span onclick="modalClose()" class="mCloseBtn"><img src="img/modal_close.png" alt="모달창 닫기버튼"></span>';
+                $('.modal').html(modalhtml+modalClose);
+                $('.modal').css({display:'flex'});
+            });
+        }
     });
     
     function returnFalse(){

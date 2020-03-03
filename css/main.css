@@ -89,6 +89,26 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'fl';
+  src: url('../fonts/Flashing.eot');
+  src: url('../fonts/Flashing.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/Flashing.ttf') format('ttf'),
+       url('../fonts/Flashing.woff') format('woff'),
+       url('../fonts/Flashing.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'syb';
+  src: url('../fonts/Tlab-ShinYoungbok.eot');
+  src: url('../fonts/Tlab-ShinYoungbok.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/Tlab-ShinYoungbok.ttf') format('ttf'),
+       url('../fonts/Tlab-ShinYoungbok.woff') format('woff'),
+       url('../fonts/Tlab-ShinYoungbok.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
 
 body {
     background-color:#121220;
@@ -109,12 +129,16 @@ html, body {
     box-sizing:border-box;
     line-height:1;
 }
+::selection {
+  color:#ffffff;
+  background:#181863;
+}
 a {
     text-decoration:none;
     color:#ffffff;
 }
 ::selection {
-    background:#9fd4ed;
+    background:#d16483;
     color:#ffffff;
 }
 ul, ol, li {
@@ -206,6 +230,10 @@ table {
     font-size:16px;
     color:#aaaaaa;
     text-shadow:1px 0px 3px rgba(0,0,0,0.5);
+    transition:.3s;
+}
+.menuicon a:hover {
+    color:#ffffff;
 }
 .nav-logo a {
     font-size:18px;
@@ -409,7 +437,7 @@ table {
 }
 .c-day {
     position:relative;
-    display:inline-block;
+    display:block;
     float:left;
     width:130px;
     height:45px;
@@ -504,15 +532,14 @@ table {
     height:100%;
 }
 .galImgbox {
-    /*width:12.5%;*/
+    position:relative;
     height:60%;
     margin-top:8%;
     margin-left:5%;
     border-radius:7px;
-    box-shadow: 1px 5px 3px rgba(208, 206, 219,.2);
+    box-shadow: 1px 5px 3px rgba(255,255,255,.1);
     float:left;
     overflow:hidden;
-    background-color:rgba(3,1,20,0.7);
     cursor:pointer;
 }
 .galImgbox:nth-child(odd){
@@ -526,29 +553,62 @@ table {
 .galImgbox:first-child {
     margin-left:0;
 }
-.galImgbox img {
-    height:132%;
-    position:absolute;
-    top:-16%;
-    left:-43.75%;
-}
 .galImgbox:nth-child(odd) img{
     transform:skewy(-27deg);
 }
 .galImgbox:nth-child(even) img{
     transform:skewy(27deg);
 }
-.galImgbox:nth-child(5) img {
-    top:-20%;left:-30%;
+.galImgbox:nth-child(odd) .text {
+    transform:skewy(-27deg);
 }
-.galImgbox:nth-child(6) img {
-    top:-18%;left:-52%;
+.galImgbox:nth-child(even) .text {
+    transform:skewy(27deg);
 }
-.galImgbox:nth-child(7) img {
-    top:-11%;left:-60%;
+
+.galImgbox img {
+    display:inline-block;
+    height:132%;
+    position:absolute;
+    top:-16%;
+    left:-43.75%;
 }
-.galImgbox:nth-child(9) img {
+
+.galImgbox .text {
+    position:relative;
+    display:block;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:100%;
+    height:126%;
+    top:-13%;
+    background-color:#520f22;
+}
+.galImgbox .text:before {
+    content:'';
+    position: absolute;
+    display:block;
+    width:100%;
+    height:100%;
+    opacity:0.3;
+    background-image: url(../img/text_bg.png);
+    background-repeat:no-repeat;
+    background-position: center bottom;
+}
+.galImgbox .text .galTit {
+    position:relative;
+    top:-5px;
+    font-family: 'fl';
+    font-size:44px;
+    font-weight:normal;
+    line-height:1.4;
+    color:rgba(255,255,255,0.9);
+    text-shadow:2px 3px 2px rgba(163, 60, 90,.7);
     
+}
+.galImgbox .text .galTxt {
+    display:none;
 }
 
 .modal {
@@ -564,10 +624,10 @@ table {
     align-items:center;
     display:none;
 }
-.modal img {
-    height:100%;
-    max-height:700px;
+.modal>span {
+    display:block;
     border-radius:10px;
+    overflow:hidden;
 }
 .mCloseBtn {
     position:absolute;
@@ -578,4 +638,65 @@ table {
 .mCloseBtn img {
     width:50px;
     height:50px;
+}
+.modal .img img {
+    height:100%;
+    max-height:700px;
+}
+.modal .text {
+    position:relative;
+    width:550px;
+    height:700px;
+    padding:80px 50px;
+    background:#340311;
+}
+.modal .text .hidden {
+    display:none;
+}
+.modal .text .frame {
+    display:flex;
+    justify-content:center;
+    position:absolute;
+    left:calc(50% - 250px);
+}
+.modal .text .frame img {
+    width:40%;
+    opacity:.2;
+}
+.modal .text .frameTop {
+    top:24px;
+}
+.modal .text .frameBtm {
+    bottom:24px;
+}
+.modal .text > span {
+    position:relative;
+    display:block;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+.modal .text > span > span {
+    position:relative;
+    display:block;
+    width:103.8%;
+    height:103.2%;
+    top:0;
+    left:0;
+    overflow:scroll;
+}
+.modal .text .galTit {
+    font-family:'fl',sans-serif;
+    margin-bottom:50px;
+    font-weight:normal;
+    font-size:40px;
+}
+.modal .text .galTxt {
+    font-size:14px;
+    line-height:2;
+    text-indent:14px;
+}
+.modal .text .gTtxt .sm {
+    font-size:12px;
+    color:#cccccc;
 }
